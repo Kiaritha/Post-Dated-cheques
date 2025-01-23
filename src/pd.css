@@ -1,0 +1,16 @@
+.pdtable{
+    background-color: rgb(8, 93, 87);
+    color: white;
+}
+tbody,table,th,tr,td{
+    border: 2px ridge;
+    padding: 10px;
+}
+body{
+    font-family: sans-serif;
+    background-color: rgb(8, 93, 87);
+}
+h2 {
+    font-family:'Times New Roman', Times, serif;
+    color: white;
+}
