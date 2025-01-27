@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import './pd.css';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import ChequesPage from "./chqs";
 import './myFunc.js';
 //import myFunc from "./myFunc.js";
 //import homePage from './Home.jsx';
@@ -73,7 +75,20 @@ export default function PdApp() {
   };
   
    return (
-    <div className="App">
+    <Router>
+      <div className="App">
+        <nav className="navigation">
+          <Link to="/">Home</Link> | <Link to="/cheques">Cheques Overview</Link>
+        </nav>
+
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div>
+      <header className="head">
+        <img src="grebe-logo.png" height="80px" width="150px" alt="Grebe logo" />
+            </header>
        <form onSubmit = {handleSubmit}>
       <table className="pdtable">
         <tbody>
@@ -92,6 +107,7 @@ export default function PdApp() {
                 value={inputs.username || ""}
                 required
                 onChange= {handleChange}
+                id="name"
                 />
                 </label><br></br>
               <label>
@@ -101,19 +117,31 @@ export default function PdApp() {
                 value = {inputs.cheque1 || ""}
                 required
                 onChange = {handleChange}
+                id="number"
                 />
               </label><br></br>
               <label>
-               Amount:<br></br>
+               Amount:
                <input
-               type="number"
+               type="text"
                name="amt1"
                value={inputs.amt1 || ""}
                required
                onChange= {handleChange}
+               id="amount"
                />
               </label><br></br>
-
+              <label>
+               cheque number:
+                <input
+                type="text"
+                name="cheqno1"
+                value={inputs.cheqno1 || ""}
+                required
+                onChange= {handleChange}
+                id="chequeno"
+                />
+              </label><br></br>
               <label>
                 Date payable:
                 <input
@@ -122,8 +150,10 @@ export default function PdApp() {
                 value={inputs.date1 || ""}
                 required
                 onChange= {handleChange}
+                id="duedate"
                 />
               </label>
+
               </td>
               <td>
               {upcomingCheques.length > 0 ? (
@@ -155,46 +185,21 @@ export default function PdApp() {
       </table>
       <input type="submit" value="Add cheque" />
             </form>  
-            
-        <h2> <u>Reminders</u></h2>
-        {reminders.length > 0 ? (
-          <ul>
-        {reminders.map((cheque, index) => (
-          <li key={index}>
-          Cheque for {cheque.username} | account number: {cheque.cheque1} | is payable on:
-          {cheque.date1}
-          </li>
-        ))}
-         </ul>
-          ) : (
-            <p> There are no upcoming cheques in the next 7 days </p>
-          )}
-          <h2><u>Upcoming cheques</u></h2>
-          {upcomingCheques.length > 0 ? (
-            <ul>
-              {upcomingCheques.map((cheque,index) => (
-                <li key={index}>
-                  {cheque.username} | {cheque.cheque1} | {cheque.amt1} | Due on : {cheque.date1}
-                </li>
-              )
-            )}
-            </ul>
-          ) : (<p> There are no upcoming cheques</p>)
-        }
-        <h2><u>Cleared cheques</u></h2>
-        {clearedCheques.length > 0 ? (
-          <ul>
-        {clearedCheques.map((cheque,index)=>(
-          <li key={index}>
-           These cheques have been cleared: {cheque.username} | {cheque.cheque1} | cleared: {cheque.date1}
-          </li>
-        ))}
-          </ul>
-        ) : (<p>No cleared cheques</p>)
-        }
-        
-    </div>
+            </div>
+            }
+            />
+             <Route
+            path="/cheques"
+            element={
+              <ChequesPage
+                upcomingCheques={upcomingCheques}
+                reminders={reminders}
+                clearedCheques={clearedCheques}
+              />
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
-};
-
-
+}

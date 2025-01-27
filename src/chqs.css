@@ -1,0 +1,17 @@
+.headings{
+    align-items: center;
+    justify-content: center;
+    color: black;
+    background-color: rgb(8, 93, 87);
+    background-size: auto;
+    border: 2px solid black;
+    font-family: sans-serif;
+    display: inline-block;
+    
+   
+}
+h1{
+    text-decoration: underline;
+    font-style: oblique;
+}
+
