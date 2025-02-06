@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import './pd.css';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Loginpage from "./Loginpage.jsx";
 import ChequesPage from "./chqs";
-import './myFunc.js';
-//import myFunc from "./myFunc.js";
-//import homePage from './Home.jsx';
 
 export default function PdApp() {
   const [inputs, setInputs] = useState({});
@@ -78,10 +76,14 @@ export default function PdApp() {
     <Router>
       <div className="App">
         <nav className="navigation">
-          <Link to="/">Home</Link> | <Link to="/cheques">Cheques Overview</Link>
+          <Link to="/">Home</Link> | <Link to="/cheques">Cheques Overview</Link> | <Link to="/login">Login</Link>
         </nav>
 
         <Routes>
+       <Route
+            path="/login"
+            element={<Loginpage />}
+          />
           <Route
             path="/"
             element={
@@ -198,6 +200,7 @@ export default function PdApp() {
               />
             }
           />
+           
         </Routes>
       </div>
     </Router>

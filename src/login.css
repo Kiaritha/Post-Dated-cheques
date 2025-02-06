@@ -3,12 +3,14 @@ body{
     color: aliceblue;
     font-weight: 200;
     font-family: sans-serif;
+    
 }
 
 .logintab{
     align-content: center;
     margin: 20px;
     padding: 10px;
+    background-color: green;
 }
 
 tbody,table,tr,td{
